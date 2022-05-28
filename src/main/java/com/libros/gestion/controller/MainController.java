@@ -24,36 +24,7 @@ public class MainController {
     @Autowired
     private DocumentoRepository documentoRepo;
 
-    @GetMapping(path = "/editorial/all")
-    public @ResponseBody
-    Iterable<Editorial> getAllEditoriales() {
-        return editorial.findAll();
-    }
 
-    @PostMapping(path = "/editorial/create",
-            consumes = "application/json", produces = "application/json")
-    public Editorial createEditorial(@RequestBody Editorial newEditorial) {
-        return editorial.save(newEditorial);
-    }
-
-    @PutMapping(path = "/editorial/update",
-            consumes = "application/json", produces = "application/json")
-    public Editorial updateEditorial(@RequestBody Editorial updateEditorial) {
-        return editorial.save(updateEditorial);
-    }
-
-    @DeleteMapping(path = "/editorial/delete/{id}")
-    Iterable<Editorial> deleteEditorialbyId(@PathVariable("id") int id_ed) {
-        try {
-            editorial.deleteById(id_ed);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            return editorial.findAll();
-
-        }
-
-    }
     /*********************Documento************/
 
     @GetMapping(path = "/documento/all")
