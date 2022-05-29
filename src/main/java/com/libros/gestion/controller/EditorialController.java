@@ -5,6 +5,7 @@ import com.libros.gestion.repository.EditorialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 
 
 @RestController
@@ -43,6 +44,18 @@ public class EditorialController {
             return editorial.findAll();
 
         }
+
+    }
+
+    /****
+     * Busqueda por nombre
+     * @param nombre
+     * @return
+     */
+    @GetMapping(path = "name/{nombre}")
+    public @ResponseBody
+    Collection<Editorial> getEditorialByName(@PathVariable("nombre") String nombre) {
+        return editorial.getEditorialByName(nombre);
 
     }
 }

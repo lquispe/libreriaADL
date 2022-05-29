@@ -1,14 +1,14 @@
 package com.libros.gestion.controller;
 
-import com.libros.gestion.model.Categoria;
 import com.libros.gestion.model.TipoDoc;
-import com.libros.gestion.model.Editorial;
+import com.libros.gestion.repository.CategoriaRepository;
 import com.libros.gestion.repository.DocumentoRepository;
 import com.libros.gestion.repository.EditorialRepository;
-import com.libros.gestion.repository.CategoriaRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/libreria")
@@ -35,35 +35,5 @@ public class MainController {
 
 
     /*********************Categoria************/
-    @GetMapping(path = "/category/all")
-    public @ResponseBody
-    Iterable<Categoria> getAllCategoria() {
-        return categoria.findAll();
-    }
-
-    @PostMapping(path = "/category/create",
-            consumes = "application/json", produces = "application/json")
-    public Categoria createCategoria(@RequestBody Categoria newCategoria) {
-        return categoria.save(newCategoria);
-    }
-
-    @PutMapping(path = "/category/update",
-            consumes = "application/json", produces = "application/json")
-    public Categoria updateEditorial(@RequestBody Categoria updateCategoria) {
-        return categoria.save(updateCategoria);
-    }
-
-    @DeleteMapping(path = "/category/delete/{id}")
-    Iterable<Categoria> deleteCategoriabyId(@PathVariable("id") int id_cate) {
-        try {
-            categoria.deleteById(id_cate);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            return categoria.findAll();
-
-        }
-
-    }
 
 }
