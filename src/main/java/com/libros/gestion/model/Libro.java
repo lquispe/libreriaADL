@@ -14,7 +14,10 @@ public class Libro {
 
     private Integer edicion;
     private String imagen;
-    private String autor;
+
+    @OneToOne
+    @JoinColumn(name = "autor_id", referencedColumnName = "id")
+    private Autor autor;
 
     private Double precio;
     private Integer stock;
@@ -93,12 +96,13 @@ public class Libro {
     }
 
 
-    public String getAutor() {
+    public Autor getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
     }
+
 
 }

@@ -18,6 +18,9 @@ public class PedidoController {
         return pedidoRepository.getPedidoLibro(estado);
 
     }
+    /* doy de alta  pedido
+    doy de alta la tabla libro pedido,
+     */
 
 
 
