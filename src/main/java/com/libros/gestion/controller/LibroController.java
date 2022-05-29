@@ -1,6 +1,8 @@
 package com.libros.gestion.controller;
 
 import com.libros.gestion.model.Libro;
+import com.libros.gestion.model.reportes.BusquedaValLibAuEd;
+import com.libros.gestion.repository.BusquedaRepository;
 import com.libros.gestion.repository.LibroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,9 @@ public class LibroController {
 
     @Autowired
     private LibroRepository libroRepo;
+
+    @Autowired
+    private BusquedaRepository busquedaRepository;
 
     @PostMapping(path = "/create",
             consumes = "application/json", produces = "application/json")
@@ -60,6 +65,18 @@ public class LibroController {
 
         System.out.println(nombre);
         return libroRepo.getLibrosByName(nombre);
+
+    }
+
+    /**
+     * Realiza la búsqueda por Libro, Autor, Editorial según el valor  por param
+     * @param valBuscar
+     * @return
+     */
+    @GetMapping(path = "val/{valBuscar}")
+    public @ResponseBody
+    Iterable<BusquedaValLibAuEd> getLibrosByEdAuNom(@PathVariable("valBuscar") String valBuscar) {
+        return busquedaRepository.getLibroBuscado(valBuscar);
 
     }
 
