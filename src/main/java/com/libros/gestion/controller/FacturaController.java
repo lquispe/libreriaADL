@@ -1,6 +1,6 @@
 package com.libros.gestion.controller;
 
-import com.libros.gestion.model.Factura;
+import com.libros.gestion.model.reportes.VentaCliente;
 import com.libros.gestion.model.reportes.VentasMes;
 import com.libros.gestion.repository.FacturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +25,13 @@ public class FacturaController {
     Iterable<VentasMes> getListadoVentas() {
         return facturaRepository.getVentasDesc();
     }
+
+
+    @GetMapping(path = "/venCliente")
+    public @ResponseBody
+    Iterable<VentaCliente> getListadoVentaCli() {
+        return facturaRepository.getVentasCli();
+    }
+
 
 }
